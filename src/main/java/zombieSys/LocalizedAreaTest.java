@@ -51,4 +51,14 @@ public class LocalizedAreaTest {
 		weapon = sim.pickupItem(human, weapon);
 		assertNotNull(weapon);
 	}
+	@Test
+	public void testEquipWeaponPass(){
+		//desc, bonus, skill, weight
+		String args[] = {"knife", "1", "2", "3"};
+		InanimateObject weapon = new Weapon(args);
+		assertEquals("knife", weapon.getDescription());
+		weapon = sim.pickupItem(human, weapon);
+		assertNull(weapon);		
+		assertTrue(sim.equipWeapon(human, "knife"));		
+	}
 }

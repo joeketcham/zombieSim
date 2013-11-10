@@ -16,20 +16,20 @@ public class LocalizedArea
 		return human.dropItem(itemDescription);
 	} 
   	
-	public boolean equipWeapon(Human human, Weapon weapon){
-		return human.equipWeapon(weapon);
+	public boolean equipWeapon(Human human, String weaponDesc){
+		return human.equipWeapon(weaponDesc);
 	}
 	
-	public boolean unEquipWeapon(Human human, Weapon weapon){
-		return human.unEquipWeapon(weapon);
+	public boolean unEquipWeapon(Human human){
+		return human.unEquipWeapon();
 	}
   
-	public boolean equipArmor(Human human, Armor armor){
-		return human.equipArmor(armor);
+	public boolean equipArmor(Human human, String armorDesc){
+		return human.equipArmor(armorDesc);
 	}
 	
-	public boolean unEquipArmor(Human human, Armor armor){
-		return human.unEquipArmor(armor);
+	public boolean unEquipArmor(Human human){
+		return human.unEquipArmor();
 	}
 	
 	public int attack(Human human, Zombie zombie){

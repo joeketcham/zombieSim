@@ -70,36 +70,38 @@ public class Human extends AnimateObject
 	  carryBag.remove(itemDescription);
 	  return toDrop;
 	}  
-
-	public boolean equipWeapon(Weapon weapon){
-		if (!carryBag.containsKey(weapon.getDescription())) { 
+	
+	public boolean equipWeapon(String weaponDesc){
+		if (!carryBag.containsKey(weaponDesc)) { 
 			return false; 
 		}
 		if (equipedWeapon == null) { 			
-			equipedWeapon = weapon;
+			equipedWeapon = (Weapon)carryBag.get(weaponDesc);
 			return true;
 		}
 		return false; 
 	}
-	public boolean unEquipWeapon(Weapon weapon){
+	public boolean unEquipWeapon(){
 		if (equipedWeapon != null) { 
+			carryBag.put(equipedWeapon.getDescription(), equipedWeapon);
 			equipedWeapon = null;
 			return true;
 		}
 		return false;
 	}
-	public boolean equipArmor(Armor armor){
-		if (!carryBag.containsKey(armor.getDescription())) { 
+	public boolean equipArmor(String armorDesc){
+		if (!carryBag.containsKey(armorDesc)) { 
 			return false; 
 		}
 		if (equipedArmor == null) {
-			equipedArmor = armor;
+			equipedArmor = (Armor)carryBag.get(armorDesc);
 			return true;
 		}
 		return false; 
 	}
-	public boolean unEquipArmor(Armor armor){
+	public boolean unEquipArmor(){
 		if (equipedArmor != null) {
+			carryBag.put(equipedArmor.getDescription(), equipedArmor);
 			equipedArmor = null;
 			return true;
 		}
