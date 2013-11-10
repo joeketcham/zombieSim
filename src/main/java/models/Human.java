@@ -77,13 +77,15 @@ public class Human extends AnimateObject
 		}
 		if (equipedWeapon == null) { 			
 			equipedWeapon = (Weapon)carryBag.get(weaponDesc);
+			weight = weight - equipedWeapon.getWeight();
 			return true;
 		}
 		return false; 
 	}
 	public boolean unEquipWeapon(){
 		if (equipedWeapon != null) { 
-			carryBag.put(equipedWeapon.getDescription(), equipedWeapon);
+			carryBag.put(equipedWeapon.getDescription(), (InanimateObject)equipedWeapon);
+			weight = weight + equipedWeapon.getWeight();
 			equipedWeapon = null;
 			return true;
 		}
@@ -95,13 +97,15 @@ public class Human extends AnimateObject
 		}
 		if (equipedArmor == null) {
 			equipedArmor = (Armor)carryBag.get(armorDesc);
+			weight = weight - equipedArmor.getWeight();
 			return true;
 		}
 		return false; 
 	}
 	public boolean unEquipArmor(){
 		if (equipedArmor != null) {
-			carryBag.put(equipedArmor.getDescription(), equipedArmor);
+			carryBag.put(equipedArmor.getDescription(), (InanimateObject)equipedArmor);
+			weight = weight + equipedArmor.getWeight();
 			equipedArmor = null;
 			return true;
 		}

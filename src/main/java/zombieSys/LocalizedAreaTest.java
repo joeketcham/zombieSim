@@ -59,6 +59,7 @@ public class LocalizedAreaTest {
 		assertEquals("knife", weapon.getDescription());
 		weapon = sim.pickupItem(human, weapon);
 		assertNull(weapon);		
-		assertTrue(sim.equipWeapon(human, "knife"));		
+		assertTrue(sim.equipWeapon(human, "knife"));	
+		assertTrue(sim.unEquipWeapon(human));
 	}
 }
