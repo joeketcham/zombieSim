@@ -74,13 +74,13 @@ public class Human extends AnimateObject
 	public boolean equipWeapon(Weapon weapon){
 		return false; 
 	}
-	public boolean unEquipWeapon(){
+	public boolean unEquipWeapon(Weapon weapon){
 		return false;
 	}
 	public boolean equipArmor(Armor armor){
 		return false; 
 	}
-	public boolean unEquipArmor(){
+	public boolean unEquipArmor(Armor armor){
 		return false;
 	}
 	public int attack(){
