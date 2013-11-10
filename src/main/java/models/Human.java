@@ -72,15 +72,37 @@ public class Human extends AnimateObject
 	}  
 
 	public boolean equipWeapon(Weapon weapon){
+		if (!carryBag.containsKey(weapon.getDescription())) { 
+			return false; 
+		}
+		if (equipedWeapon == null) { 			
+			equipedWeapon = weapon;
+			return true;
+		}
 		return false; 
 	}
 	public boolean unEquipWeapon(Weapon weapon){
+		if (equipedWeapon != null) { 
+			equipedWeapon = null;
+			return true;
+		}
 		return false;
 	}
 	public boolean equipArmor(Armor armor){
+		if (!carryBag.containsKey(armor.getDescription())) { 
+			return false; 
+		}
+		if (equipedArmor == null) {
+			equipedArmor = armor;
+			return true;
+		}
 		return false; 
 	}
 	public boolean unEquipArmor(Armor armor){
+		if (equipedArmor != null) {
+			equipedArmor = null;
+			return true;
+		}
 		return false;
 	}
 	public int attack(){
