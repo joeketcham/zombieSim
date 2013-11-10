@@ -21,7 +21,6 @@ public class Human extends AnimateObject
    */
   public Human()
   {
-	    //this.carryBag = new HashMap<String, InanimateObject>();	    
 	    fname = "";
 		lname = "";
 		carryingCapacity = 10;
@@ -75,10 +74,17 @@ public class Human extends AnimateObject
 		if (!carryBag.containsKey(weaponDesc)) { 
 			return false; 
 		}
-		if (equipedWeapon == null) { 			
-			equipedWeapon = (Weapon)carryBag.get(weaponDesc);
-			weight = weight - equipedWeapon.getWeight();
-			return true;
+		if (equipedWeapon == null) {
+			InanimateObject equipedWeaponTest = carryBag.get(weaponDesc);
+			if (equipedWeaponTest instanceof Weapon) {
+				equipedWeapon = (Weapon)equipedWeaponTest;
+				weight = weight - equipedWeapon.getWeight();
+				return true;
+			}
+			else {
+				carryBag.put(weaponDesc, equipedWeaponTest);
+				return false;
+			}
 		}
 		return false; 
 	}
