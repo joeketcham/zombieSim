@@ -63,8 +63,7 @@ public class LocalizedAreaTest {
 		sim.pickupItem(human, weapon);
 		assertTrue(
 		human.equipWeapon("knife"));
-	}
-	 
+	}	 
 	 
 	@Test	 
 	//test case for non-weapon equipped	 
@@ -78,8 +77,7 @@ public class LocalizedAreaTest {
 		sim.pickupItem(human, armor);
 		assertFalse(
 		human.equipWeapon("armorTest"));
-	}
-	 
+	}	 
 	 
 	@Test	 
 	//test case for weapon with an already equipped weapon	 
@@ -105,8 +103,7 @@ public class LocalizedAreaTest {
 		human.equipWeapon(".45 with silencer"));
 		assertFalse(
 		human.equipWeapon("shotgun"));
-	}
-	 
+	}	 
 	 
 	@Test	 
 	//test case for non-weapon with an already equipped weapon	 
@@ -149,4 +146,97 @@ public class LocalizedAreaTest {
 		assertFalse(
 		human.equipWeapon(".45 with silencer"));
 	}
+	 
+	 @Test	 
+		public void testEquipArmorPass(){	 
+			//desc, bonus, skill, weight
+			String args[] = {
+			"Bulletproof Plate", "1", "2", "3"};
+			InanimateObject armor =
+			new Armor(args);
+			armor =
+			sim.pickupItem(human, armor);
+			assertTrue(
+			human.equipArmor("Bulletproof Plate"));
+		}	 
+		 
+		@Test	 
+		//test case for non-armor equipped	 
+		public void testEquipArmorFail(){	 
+			//desc, bonus, skill, weight
+			String args[] = {
+			"weaponTest", "1", "2", "3"};
+			InanimateObject weapon =
+			new Weapon(args);
+			weapon =
+			sim.pickupItem(human, weapon);
+			assertFalse(
+			human.equipArmor("weaponTest"));
+		}	 
+		 
+		@Test	 
+		//test case for armor with an already equipped armor 
+		public void testEquipArmorFail2(){	 
+			//desc, bonus, skill, weight		 
+			//item to equip
+			String args[] = {
+			"Bulletproof Plate", "1", "2", "3"};
+			InanimateObject armor =
+			new Armor(args);
+			armor =
+			sim.pickupItem(human, armor);	 
+		 
+			//item to pickup; fail to equip with something already equipped
+			args = new String[] {
+			"Helmet", "1", "2", "3"};
+			armor =	new Armor(args);
+			armor =	sim.pickupItem(human, armor);
+			 
+			assertTrue(
+			human.equipArmor("Bulletproof Plate"));
+			assertFalse(
+			human.equipArmor("Helmet"));
+		}	 
+		 
+		@Test	 
+		//test case for non-weapon with an already equipped weapon	 
+		public void testEquipArmorFail3(){	 
+			//desc, bonus, skill, weight		 
+			//item to equip
+			String args[] = {
+					"Bulletproof Plate", "1", "2", "3"};
+			InanimateObject armor =
+			new Armor(args);
+			armor =
+			sim.pickupItem(human, armor);		 
+			 
+			//item to fail to equip
+			args = new String[] {
+			"gun", "1", "2", "3"};
+			InanimateObject weapon =
+			new Weapon(args);
+			weapon =
+			sim.pickupItem(human, weapon);
+			 
+			assertTrue(
+			human.equipArmor("Bulletproof Plate"));
+			assertFalse(
+			human.equipArmor("gun"));
+		}
+		 
+		 @Test	 
+		//test case for attempting to equip an item already equipped	 
+		public void testEquipArmorFail4(){	 
+			//desc, bonus, skill, weight
+			String args[] = {
+			"helmet", "1", "2", "3"};
+			InanimateObject armor =
+			new Armor(args);
+			armor =
+			sim.pickupItem(human, armor);
+			assertTrue(
+			human.equipArmor("helmet"));
+			assertFalse(
+			human.equipArmor("helmet"));
+		}
 }

@@ -101,10 +101,18 @@ public class Human extends AnimateObject
 		if (!carryBag.containsKey(armorDesc)) { 
 			return false; 
 		}
+		
 		if (equipedArmor == null) {
-			equipedArmor = (Armor)carryBag.get(armorDesc);
-			weight = weight - equipedArmor.getWeight();
-			return true;
+			InanimateObject equipedArmorTest = carryBag.get(armorDesc);
+			if (equipedArmorTest instanceof Armor) {
+				equipedArmor = (Armor)carryBag.get(armorDesc);
+				weight = weight - equipedArmor.getWeight();
+				return true;
+			}
+			else {
+				carryBag.put(armorDesc, equipedArmorTest);
+				return false;
+			}
 		}
 		return false; 
 	}
